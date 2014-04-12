@@ -1,7 +1,7 @@
 {
     "meta": {
         "name": "test",
-        "frequency": 1,
+        "frequency": 0.5,
         "repetitions": 5
     },
     "messages": [

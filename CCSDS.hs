@@ -25,8 +25,10 @@ sequenceCount :: BV
 sequenceCount = zeros 14
 
 
-packetDataLength :: (CCSDS a) => a -> BV
-packetDataLength = bitVec 16 . (+1) . length . payload
+packetDataLength :: (CCSDS a ) => a -> BV
+packetDataLength m = bitVec 16 (l-1)
+    where
+        l = length (secondaryHeader m) + length (payload m)
 
 
 class (Show a) => CCSDS a where
@@ -51,15 +53,21 @@ primaryHeader m = packetVersionNumber
                 # packetDataLength m
 
 
+header :: (CCSDS a) => a -> [Word8]
+header m = bits2bytes (toBits (primaryHeader m)) ++ secondaryHeader m
+
+
+packet :: (CCSDS a) => a -> [Word8]
+packet m = (swapBytes (header m)) ++ payload m
+
+
+
 packCCSDS :: (CCSDS a) => a -> [Word8]
-packCCSDS m = assert checkAll packet
+packCCSDS m = assert checkAll (packet m)
     where
-    pri = primaryHeader m
-    check1 = size pri == 6 * 8 --bits
-    header = bits2bytes (toBits pri) ++ secondaryHeader m
-    packet = (swapBytes header) ++ payload m
-    check2 = length packet == fromIntegral (nat (packetDataLength m)) + length header - 1
-    checkAll = check1 && check2
+        check1 = size (primaryHeader m) == 6 * 8 --bits
+        check2 = length (payload m) + length (secondaryHeader m) == fromIntegral (nat (packetDataLength m)) + 1
+        checkAll = check1 && check2
 
 
 showCCSDS :: (CCSDS a) => a -> String
