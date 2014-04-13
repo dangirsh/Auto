@@ -10,53 +10,37 @@ import GHC.Generics (Generic)
 import qualified Data.ByteString.Lazy as B
 import qualified Data.ByteString.Lazy.Char8 as C
 import System.IO
+import Control.Concurrent (forkIO)
+import Controller
 import Message
 import CCSDS
 import Send
 
-data MessageFile = MessageFile {
-     meta :: MetaData
-    ,messages :: [Message]
-} deriving (Show, Generic)
-
-instance FromJSON MessageFile
-
-
-data MetaData = MetaData {
-     name :: String
-    ,frequency :: Double
-    ,repetitions :: Int
-} deriving (Show, Generic)
-
-instance FromJSON MetaData
-
 
 main :: IO ()
---main = getArgs >>= mapM parseFile >>= mapM_ sendMessages
-main = mapM parseFile ["test2.json"] >>= mapM_ sendMessages
+--main = getArgs >>= mapM parseCtrl >>= mapM_ run
+main = mapM parseFile ["main.ctrl"] >>= mapM_ run
 
 
-parseFile :: String -> IO MessageFile
+parseFile :: (FromJSON a) => String -> IO a
 parseFile file = do
+    -- d <- eitherDecode <$> cleanFile file
     d <- eitherDecode <$> C.filter (/= '\n') <$> B.readFile file
     return $ case d of
-        Right mf -> mf
-        Left  m -> error m
+        Right ctrl -> ctrl
+        Left  e -> error e
 
 
-sendMessages :: MessageFile -> IO ()
-sendMessages (MessageFile {
-                 meta=(MetaData {
-                     name=n
-                    ,frequency=freq
-                    ,repetitions=r
-                })
-                ,messages=ms
-             }) = do
-    print $ "Sending " ++ n ++ " sequence "
-          ++ "at " ++ show freq ++ "Hz "
-          ++ show r ++ " times..."
-    replicateM_ r $ mapM_ (send freq) ms
+run :: Controller -> IO ()
+run (Controller {sequenced=s, parallel=p}) = do
+    forM_ s runRepeat
+    --forM_ p (forkIO . runRepeat)
+    where
+        runRepeat = do
+            f <- file
+            freq <- frequency
+            rep <- repetitions
+            return $  parseFile f >>= replicateM_ rep . send freq
 
 
 type Frequency = Double
@@ -70,6 +54,17 @@ send freq (CmdMessage c) = sendCCSDS freq c
 sendCCSDS :: (CCSDS a) => Frequency -> a -> IO ()
 sendCCSDS freq ccsds = do
     sendUDP "127.0.0.1" 1234 $ B.pack (packCCSDS ccsds)
-    print $ packCCSDS ccsds
+    --print $ packCCSDS ccsds
+    print $ (length . payload) ccsds
     hFlush stdout
     threadDelay (round $ 1000000 / freq)
+
+
+--print $ "Sending " ++ n ++ " sequence "
+--  ++ "at " ++ show freq ++ "Hz "
+--  ++ show r ++ " times..."
+
+--cleanFile :: FilePath -> IO ByteString
+--cleanFile file =
+--    ls <- lines <$> readFile file
+--    return . B.pack . removeNewlines . removeComments $ ls

@@ -1,0 +1,26 @@
+{
+    "parallel": [
+        {
+            "file": "ekf.msg",
+            "frequency": 1,
+            "repetitions": 5
+        },
+        {
+            "file": "cmg.msg",
+            "frequency": 0.2,
+            "repetitions": 5
+        }
+    ],
+    "sequenced": [
+        {
+            "file": "ekf.msg",
+            "frequency": 1,
+            "repetitions": 1
+        },
+        {
+            "file": "cmg.msg",
+            "frequency": 1,
+            "repetitions": 1
+        }
+    ]
+}
