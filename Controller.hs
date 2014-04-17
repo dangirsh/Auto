@@ -7,11 +7,20 @@ import Data.Aeson (FromJSON)
 
 
 data Controller = Controller {
-     sequenced :: [MessageMeta]
+     meta :: ControllerMeta
+    ,sequenced :: [MessageMeta]
     ,parallel :: [MessageMeta]
 } deriving (Show, Generic)
 
 instance FromJSON Controller
+
+
+data ControllerMeta = ControllerMeta {
+     ip :: String
+    ,port :: Integer
+} deriving (Show, Generic)
+
+instance FromJSON ControllerMeta
 
 
 data MessageMeta = MessageMeta {

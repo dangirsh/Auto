@@ -33,7 +33,7 @@ parseFile file = do
 
 
 run :: Controller -> IO ()
-run (Controller {sequenced=s, parallel=p}) = do
+run (Controller {meta=m, sequenced=s, parallel=p}) = do
     forM_ s runRepeat
     --forM_ p (forkIO . runRepeat)
     where
@@ -41,20 +41,20 @@ run (Controller {sequenced=s, parallel=p}) = do
             f <- file
             freq <- frequency
             rep <- repetitions
-            return $  parseFile f >>= replicateM_ rep . send freq
+            return $  parseFile f >>= replicateM_ rep . send m freq
 
 
 type Frequency = Double
 
 
-send :: Frequency -> Message -> IO ()
-send freq (TlmMessage t) = sendCCSDS freq t
-send freq (CmdMessage c) = sendCCSDS freq c
+send :: ControllerMeta -> Frequency -> Message -> IO ()
+send m freq (TlmMessage t) = sendCCSDS m freq t
+send m freq (CmdMessage c) = sendCCSDS m freq c
 
 
-sendCCSDS :: (CCSDS a) => Frequency -> a -> IO ()
-sendCCSDS freq ccsds = do
-    sendUDP "127.0.0.1" 1234 . B.pack . packCCSDS $ ccsds
+sendCCSDS :: (CCSDS a) => ControllerMeta -> Frequency -> a -> IO ()
+sendCCSDS (ControllerMeta {ip=ip, port=port}) freq ccsds = do
+    sendUDP ip port . B.pack . packCCSDS $ ccsds
     putStrLn $ ppShow ccsds
     hFlush stdout
     threadDelay (round $ 1000000 / freq)

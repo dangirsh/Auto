@@ -49,6 +49,7 @@ packParam (F _ f)   = b2w . floatLE $ f
 packParam (D _ d)   = b2w . doubleLE $ d
 packParam (Arr _ ps)   = concatMap packParam ps
 
+
 b2w :: Builder -> [Byte]
 b2w = B.unpack . toLazyByteString
 
