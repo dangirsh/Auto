@@ -6,6 +6,7 @@ import Control.Applicative
 import Control.Concurrent (threadDelay)
 import Data.Aeson (FromJSON, eitherDecode)
 import Data.BitVector
+import Text.Show.Pretty
 import GHC.Generics (Generic)
 import qualified Data.ByteString.Lazy as B
 import qualified Data.ByteString.Lazy.Char8 as C
@@ -18,8 +19,8 @@ import Send
 
 
 main :: IO ()
-main = getArgs >>= mapM parseFile >>= mapM_ run
---main = mapM parseFile ["main.ctrl"] >>= mapM_ run
+--main = getArgs >>= mapM parseFile >>= mapM_ run
+main = mapM parseFile ["test.ctrl"] >>= mapM_ run
 
 
 parseFile :: (FromJSON a) => String -> IO a
@@ -53,9 +54,8 @@ send freq (CmdMessage c) = sendCCSDS freq c
 
 sendCCSDS :: (CCSDS a) => Frequency -> a -> IO ()
 sendCCSDS freq ccsds = do
-    sendUDP "127.0.0.1" 1234 $ B.pack (packCCSDS ccsds)
-    print $ packCCSDS ccsds
-    --print $ (length . payload) ccsds
+    sendUDP "127.0.0.1" 1234 . B.pack . packCCSDS $ ccsds
+    putStrLn $ ppShow ccsds
     hFlush stdout
     threadDelay (round $ 1000000 / freq)
 

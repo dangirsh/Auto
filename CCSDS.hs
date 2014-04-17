@@ -37,9 +37,9 @@ class (Show a) => CCSDS a where
 
     applicationProcessId :: a -> BV
 
-    secondaryHeader :: a -> [Word8]
+    secondaryHeader :: a -> [Byte]
 
-    payload :: a -> [Word8]
+    payload :: a -> [Byte]
 
 
 
@@ -53,22 +53,17 @@ primaryHeader m = packetVersionNumber
                 # packetDataLength m
 
 
-header :: (CCSDS a) => a -> [Word8]
+header :: (CCSDS a) => a -> [Byte]
 header m = bits2bytes (toBits (primaryHeader m)) ++ secondaryHeader m
 
 
-packet :: (CCSDS a) => a -> [Word8]
+packet :: (CCSDS a) => a -> [Byte]
 packet m = (swapBytes (header m)) ++ payload m
 
 
-
-packCCSDS :: (CCSDS a) => a -> [Word8]
+packCCSDS :: (CCSDS a) => a -> [Byte]
 packCCSDS m = assert checkAll (packet m)
     where
         check1 = size (primaryHeader m) == 6 * 8 --bits
         check2 = length (payload m) + length (secondaryHeader m) == fromIntegral (nat (packetDataLength m)) + 1
         checkAll = check1 && check2
-
-
-showCCSDS :: (CCSDS a) => a -> String
-showCCSDS = prettyBS . packCCSDS

@@ -4,31 +4,31 @@
         {
             "type": "uint8",
             "value": 0,
-            "name": "enabled_CMGs"
+            "label": "enabled_CMGs"
         },
         {
             "type": "array",
             "element_type": "float",
             "values": [0,0,0,0,0,0,0,0],
-            "name": "GimbalRate"
+            "label": "GimbalRate"
         },
         {
             "type": "array",
             "element_type": "float",
             "values": [0,0,0,0,0,0,0,0],
-            "name": "GimbalAngle"
+            "label": "GimbalAngle"
         },
         {
             "type": "array",
             "element_type": "float",
             "values": [0,0,0,0,0,0,0,0],
-            "name": "RotorSpeed"
+            "label": "RotorSpeed"
         },
         {
             "type": "array",
             "element_type": "float",
             "values": [0,0,0,0,0,0,0,0],
-            "name": "RotorTorque"
+            "label": "RotorTorque"
         }
     ]
 }

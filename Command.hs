@@ -3,13 +3,13 @@ module Command (
 ) where
 
 import Data.BitVector
+import Text.PrettyPrint.GenericPretty
 import Common
 import CCSDS
 import Parameter
 
 
-data Command = Command MessageID CommandCode [Parameter]
-
+data Command = Command MessageID CommandCode [Parameter] deriving (Show)
 
 instance CCSDS Command where
 
@@ -20,8 +20,3 @@ instance CCSDS Command where
     secondaryHeader (Command _ cc _) = [cc, 0]
 
     payload (Command _ _ ps) = concatMap packParam ps
-
-
-instance Show Command where
-
-    show = showCCSDS

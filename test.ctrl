@@ -1,0 +1,16 @@
+{
+    "sequenced": [
+        {
+            "file": "ops_test.msg",
+            "frequency": 1,
+            "repetitions": 2
+        }
+    ],
+    "parallel": [
+        {
+            "file": "ops_test.msg",
+            "frequency": 1,
+            "repetitions": 1
+        }
+    ]
+}

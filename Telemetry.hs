@@ -8,7 +8,7 @@ import CCSDS
 import Parameter
 
 
-data Telemetry = Telemetry MessageID [Parameter]
+data Telemetry = Telemetry MessageID [Parameter] deriving (Show)
 
 
 instance CCSDS Telemetry where
@@ -20,9 +20,3 @@ instance CCSDS Telemetry where
     secondaryHeader =  const $ [0, 0, 0, 0, 0, 0] -- timestamp
 
     payload (Telemetry _ ps) = concatMap packParam ps
-
-
-
-instance Show Telemetry where
-
-    show = showCCSDS
