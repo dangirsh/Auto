@@ -6,7 +6,7 @@
     "parallel": [
         {
             "file": "ekf.msg",
-            "frequency": 1,
+            "frequency": 5,
             "repetitions": 5
         },
         {
@@ -17,14 +17,9 @@
     ],
     "sequenced": [
         {
-            "file": "ekf.msg",
+            "file": "ac_noop.msg",
             "frequency": 1,
-            "repetitions": 1
-        },
-        {
-            "file": "cmg.msg",
-            "frequency": 1,
-            "repetitions": 1
+            "repetitions": 5
         }
     ]
 }

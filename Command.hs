@@ -2,14 +2,25 @@ module Command (
      Command (..)
 ) where
 
-import Data.BitVector
+import Data.BitVector hiding (showHex)
 import Text.PrettyPrint.GenericPretty
 import Common
 import CCSDS
+import Numeric (showHex)
 import Parameter
 
 
-data Command = Command MessageID CommandCode [Parameter] deriving (Show)
+data Command = Command MessageID CommandCode [Parameter]
+
+
+instance Show Command where
+
+    show (Command mid cc ps) = "CMD: mid:"
+                             ++ showHex mid ""
+                             ++ " cc:"
+                             ++ showHex cc " "
+                             ++ show ps
+
 
 instance CCSDS Command where
 

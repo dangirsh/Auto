@@ -5,10 +5,18 @@ module Telemetry (
 import Data.BitVector (fromBool)
 import Common
 import CCSDS
+import Numeric (showHex)
 import Parameter
 
 
-data Telemetry = Telemetry MessageID [Parameter] deriving (Show)
+data Telemetry = Telemetry MessageID [Parameter]
+
+
+instance Show Telemetry where
+
+    show (Telemetry mid ps) = "TLM: mid:"
+                             ++ showHex mid " "
+                             ++ show ps
 
 
 instance CCSDS Telemetry where
