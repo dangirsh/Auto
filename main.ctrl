@@ -6,13 +6,18 @@
     "parallel": [
         {
             "file": "ekf.msg",
-            "frequency": 5,
-            "repetitions": 5
+            "frequency": 1,
+            "repetitions": 10000
         },
         {
             "file": "cmg.msg",
-            "frequency": 0.2,
-            "repetitions": 5
+            "frequency": 1,
+            "repetitions": 10000
+        },
+        {
+            "file": "ac_set_mode.msg",
+            "frequency": 1,
+            "repetitions": 10000
         }
     ],
     "sequenced": [

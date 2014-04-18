@@ -21,8 +21,8 @@ import Send
 
 
 main :: IO ()
-main = getArgs >>= mapM parseFile >>= mapM_ run
---main = mapM parseFile ["main.ctrl"] >>= mapM_ run
+--main = getArgs >>= mapM parseFile >>= mapM_ run
+main = mapM parseFile ["main.ctrl"] >>= mapM_ run
 
 
 parseFile :: (FromJSON a) => String -> IO a
@@ -41,10 +41,14 @@ myForkIO io = do
     return mvar
 
 
+myForkIOs :: [IO ()] -> IO ()
+myForkIOs actions = mapM myForkIO actions >>= mapM_ takeMVar
+
+
 run :: Controller -> IO ()
 run (Controller {meta=m, sequenced=s, parallel=p}) = do
     let actions = [forM_ s runRepeat] ++ map runRepeat p
-    mapM myForkIO actions >>= mapM_ takeMVar -- forM p (myForkIO . runRepeat) >>=
+    myForkIOs actions
     where
         runRepeat = do
             f <- file
@@ -63,7 +67,7 @@ send m freq (CmdMessage c) = sendCCSDS m freq c
 
 sendCCSDS :: (CCSDS a) => ControllerMeta -> Frequency -> a -> IO ()
 sendCCSDS (ControllerMeta {ip=ip, port=port}) freq ccsds = do
-    --sendUDP ip port . B.pack . packCCSDS $ ccsds
+    sendUDP ip port . B.pack . packCCSDS $ ccsds
     putStrLn $ ppShow ccsds
     --print $ ((`showHex` "") . nat . applicationProcessId) ccsds
     hFlush stdout
