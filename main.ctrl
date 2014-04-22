@@ -5,7 +5,7 @@
     },
     "parallel": [
         {
-            "file": "ekf.msg",
+            "file": "fog.msg",
             "frequency": 1,
             "repetitions": 10000
         },

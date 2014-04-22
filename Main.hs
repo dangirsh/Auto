@@ -21,8 +21,8 @@ import Send
 
 
 main :: IO ()
---main = getArgs >>= mapM parseFile >>= mapM_ run
-main = mapM parseFile ["main.ctrl"] >>= mapM_ run
+main = getArgs >>= mapM parseFile >>= mapM_ run
+--main = mapM parseFile ["main.ctrl"] >>= mapM_ run
 
 
 parseFile :: (FromJSON a) => String -> IO a
