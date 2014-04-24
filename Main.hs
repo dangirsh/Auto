@@ -1,7 +1,7 @@
 {-# LANGUAGE NamedFieldPuns, FlexibleContexts #-}
 
 
---import System.Environment (getArgs)
+import System.Environment (getArgs)
 import Control.Monad
 import Control.Applicative ((<$>))
 import Control.Concurrent
@@ -20,7 +20,7 @@ import Controller()
 import Message()
 
 main :: IO ()
---main = mapM (parseFile >=> run) <$> getArgs
+--main = getArgs >>= mapM_ (parseFile >=> runner)
 main = (parseFile >=> runner) "main.ctrl"
 
 
@@ -36,11 +36,9 @@ myForkIOs actions = mapM myForkIO actions >>= mapM_ takeMVar
 
 
 runner :: Controller -> IO ()
-runner (Controller {meta=cm, sequenced=s, parallel=p}) =
-    --myForkIOs actions
-    sequence_ actions
-    where
-        actions = mapM_ (run cm) s : map (run cm) p
+runner (Controller {meta, sequenced, parallel}) =
+    sequence_ $ mapM_ (run meta) sequenced : map (run meta) parallel
+    --myForkIOs $ mapM_ (run meta) sequenced : map (run meta) parallel
 
 
 run :: ControllerMeta -> MessageMeta -> IO ()
@@ -64,10 +62,8 @@ pack :: (FromJSON a, CCSDS (Message a), AutoShow a) => MessageDef a -> ([B.ByteS
 pack (MessageDef {variables=vs, message=m}) =
     (map (runAuto (packCCSDS m)) envs, map (runAuto (autoShow m)) envs)
     where
-        varToPairs (Variable id_ ds) = [(id_, Parameter id_ d) | d <- ds]
+        varToPairs (Variable id_ ds) = cycle [(id_, Parameter id_ d) | d <- ds]
         envs =
-            let jaggedPairs = map varToPairs vs in
-            let smallestLen = minimum . map length $ jaggedPairs in
-            let flushPairs = map (take smallestLen) jaggedPairs in
-            let allEnvs = map (Config . M.fromList) . transpose $ flushPairs in
-            if (null allEnvs) then [Config M.empty] else allEnvs -- hack around case for no variables
+            case map (Config . M.fromList) . transpose . map varToPairs $ vs of
+                [] -> cycle [Config M.empty] -- hack around case for no variables
+                xs -> xs

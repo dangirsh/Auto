@@ -20,7 +20,7 @@ type CommandCode = Byte
 --data Endianness = BE | LE
 
 
-data Data = S   String Int
+data Data = S   (String, Int)
           | B   Bool
           | I8  Int8
           | W8  Word8
