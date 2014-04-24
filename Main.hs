@@ -12,13 +12,12 @@ import qualified Data.ByteString.Lazy as B
 import qualified Data.Map as M
 import Data.List (transpose)
 import Auto
-import Controller
 import Send
 import Parse
 import Types
 import CCSDS
-import Message
-
+import Controller()
+import Message()
 
 main :: IO ()
 --main = mapM (parseFile >=> run) <$> getArgs
@@ -46,8 +45,8 @@ runner (Controller {meta=cm, sequenced=s, parallel=p}) =
 
 run :: ControllerMeta -> MessageMeta -> IO ()
 run (ControllerMeta {ip, port}) (MessageMeta {file, frequency}) = do
-    packed <- (uncurry zip) <$> getPacked
-    forM_ packed $ (\(bs, s) -> do
+    packed <- uncurry zip <$> getPacked
+    forM_ packed (\(bs, s) -> do
         sendUDP ip port bs
         print s
         hFlush stdout
@@ -58,10 +57,11 @@ run (ControllerMeta {ip, port}) (MessageMeta {file, frequency}) = do
             case takeExtensions file of
                 ".tlm" -> pack <$> (parseFile file :: IO (MessageDef Telemetry))
                 ".cmd" -> pack <$> (parseFile file :: IO (MessageDef Command))
+                ext      -> error $ "Unknown file extension: " ++ ext
 
 
 pack :: (FromJSON a, CCSDS (Message a), AutoShow a) => MessageDef a -> ([B.ByteString], [String])
-pack (MessageDef {variables=vs, message=m}) = do
+pack (MessageDef {variables=vs, message=m}) =
     (map (runAuto (packCCSDS m)) envs, map (runAuto (autoShow m)) envs)
     where
         varToPairs (Variable id_ ds) = [(id_, Parameter id_ d) | d <- ds]
@@ -69,4 +69,4 @@ pack (MessageDef {variables=vs, message=m}) = do
             let jaggedPairs = map varToPairs vs in
             let smallestLen = minimum . map length $ jaggedPairs in
             let flushPairs = map (take smallestLen) jaggedPairs in
-            map Config . map M.fromList . transpose $ flushPairs
+            map (Config . M.fromList) . transpose $ flushPairs

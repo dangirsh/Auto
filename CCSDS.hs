@@ -32,7 +32,7 @@ sequenceCount = zeros 14
 packetDataLength :: (CCSDS a) => a -> Auto BV
 packetDataLength m = do
     pl <- length <$> payload m
-    return . bitVec 16 $ length (secondaryHeader m) + pl
+    return . bitVec 16 $ length (secondaryHeader m) + pl - 1
 
 
 class CCSDS a where
@@ -80,5 +80,5 @@ packCCSDS m = do
     len <- fromIntegral . nat <$> packetDataLength m
     let check1 = size pri == 6 * 8 --bits
     let check2 = length pld + length (secondaryHeader m) == len + 1
-    let checkAll = check1 -- && check2
+    let checkAll = check1 && check2
     return $ assert checkAll (B.pack p)
