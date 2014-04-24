@@ -13,7 +13,7 @@ import Network.Socket.ByteString (sendTo)
 import qualified Data.ByteString.Lazy as B
 import System.FilePath.Posix (takeExtensions)
 import Control.Concurrent (threadDelay)
-import Text.Show.Pretty
+import Text.Show.Pretty (ppShow)
 import System.IO
 import qualified Data.Map as M
 import Data.List (transpose)
@@ -33,8 +33,8 @@ import Auto
 send :: ControllerMeta -> Frequency -> FilePath -> IO ()
 send meta freq file =
     case takeExtensions file of
-        ".tlm" -> (sendFile meta freq file :: IO (Message Telemetry)) >> return ()
-        --".cmd" -> (sendFile meta freq file :: IO Command) >> return ()
+        ".tlm" -> void (sendFile meta freq file :: IO (Message Telemetry))
+        ".cmd" -> void (sendFile meta freq file :: IO (Message Command))
 
 
 sendFile :: (FromJSON a, CCSDS (Message a)) => ControllerMeta -> Frequency -> FilePath -> IO (Message a)

@@ -1,11 +1,8 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
-
 module Auto where
 
 import Control.Monad.Trans.Reader (ReaderT, runReaderT, ask)
 import Control.Applicative ((<$>))
 import qualified Data.Map as M
-import Control.Monad.IO.Class (liftIO)
 
 type Env a = (M.Map String a)
 
@@ -22,4 +19,4 @@ type Auto a = ReaderT (Env a) IO
 
 
 runAuto :: Auto a b -> Env a -> IO b
-runAuto auto env = runReaderT auto $ env
+runAuto = runReaderT

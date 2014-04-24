@@ -8,7 +8,6 @@ module Parameter (
 import Control.Applicative ((<$>), (<*>))
 import Data.Aeson
 import Data.Aeson.Types
-import Data.Aeson.Types
 import Data.Int (Int8, Int16, Int32, Int64)
 import Data.Word (Word8, Word16, Word32, Word64)
 import Data.Vector (toList)
@@ -16,7 +15,6 @@ import Numeric (showHex)
 import qualified Data.ByteString.Lazy as B
 import Data.ByteString.Lazy.Builder
 import Foreign.Marshal.Utils (fromBool)
-import qualified Data.Map as M
 import qualified Data.Text as T
 import Common
 import Auto
@@ -39,7 +37,7 @@ data Parameter = S   String String Int
 
 
 packParam :: Parameter -> Auto Parameter [Byte]
-packParam (S _ s n) = return $ b2w (string7 s) ++ replicate (n-(length s)) 0
+packParam (S _ s n) = return $ b2w (string7 s) ++ replicate (n - length s) 0
 packParam (B _ b)   = return $ b2w . word8 . fromBool $ b
 packParam (I8 _ i)  = return $ b2w . int8 $ i
 packParam (W8 _ w)  = return $ b2w . word8 $ w

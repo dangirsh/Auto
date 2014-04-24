@@ -2,17 +2,10 @@
 
 module Parse where
 
-import Control.Monad
 import Control.Applicative
-import Data.Aeson (FromJSON, parseJSON, (.:), (.:?), Value(Object), eitherDecode)
-import Data.Aeson.Types (Parser)
+import Data.Aeson (FromJSON, eitherDecode)
 import qualified Data.ByteString.Lazy as B
-import Data.ByteString.Search (replace)
 import qualified Data.ByteString.Lazy.Char8 as C
-import Controller
-import Message
-import Command
-import Telemetry
 
 
 parseFile :: (FromJSON a) => FilePath -> IO a

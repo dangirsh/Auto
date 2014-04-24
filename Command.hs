@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 
 module Command (
-     Command (..)
+     Command (Command)
 ) where
 
 import Numeric (showHex)
@@ -24,5 +24,5 @@ instance FromJSON Command
 
 instance Show Command where
 
-    show (Command cc ps) = "CMD: " ++ " cc:" ++ showHex cc " " ++ show ps
+    show (Command c ps) = "CMD: " ++ " cc:" ++ showHex c " " ++ show ps
 

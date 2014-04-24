@@ -1,13 +1,7 @@
 module Common where
 
 import Data.BitVector hiding (showHex)
-import Data.Binary (encode, Binary)
-import Data.Binary.Put
-import Data.Binary.Get
 import Data.Word
-import Numeric (showHex)
-import Data.ByteString.Lazy.Builder (Builder, toLazyByteString)
-import qualified Data.ByteString.Lazy as B
 
 
 type Byte = Word8
@@ -37,5 +31,5 @@ bits2bytes bits | length bits `mod` 8 == 0 = map fromInteger (pack bits)
 
 swapBytes :: [Byte] -> [Byte]
 swapBytes [] = []
-swapBytes (b1:b2:bs) = (b2:b1:swapBytes bs)
+swapBytes (b1:b2:bs) = b2:b1:swapBytes bs
 swapBytes _ = error "Must be an even number of bytes to swap."

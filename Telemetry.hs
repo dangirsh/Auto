@@ -1,12 +1,9 @@
 {-# LANGUAGE DeriveGeneric #-}
 
 module Telemetry (
-    Telemetry (..)
+    Telemetry(Telemetry)
 ) where
 
-import Common
-import CCSDS
-import Numeric (showHex)
 import GHC.Generics (Generic)
 import Data.Aeson (FromJSON)
 import Parameter

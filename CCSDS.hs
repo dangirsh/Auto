@@ -3,7 +3,6 @@
 
 module CCSDS where
 
-import Data.Word
 import Data.BitVector
 import Control.Exception.Base (assert)
 import Control.Applicative ((<$>))

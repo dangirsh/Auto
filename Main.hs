@@ -1,11 +1,6 @@
-import System.Environment (getArgs)
+--import System.Environment (getArgs)
 import Control.Monad
-import Control.Applicative
-import Data.BitVector hiding (showHex)
-import Numeric (showHex)
-import qualified Data.ByteString.Lazy as B
 import Control.Concurrent
-import Control.Concurrent.MVar
 import Controller
 import Send
 import Parse
@@ -29,8 +24,8 @@ myForkIOs actions = mapM myForkIO actions >>= mapM_ takeMVar
 
 run :: Controller -> IO ()
 run (Controller {meta=cm, sequenced=s, parallel=p}) = do
-    let actions = [mapM_ go s] ++ map go p
+    let actions = mapM_ go s : map go p
     --myForkIOs actions
     sequence_ actions
     where
-        go mm = send cm (frequency mm) (file mm) >> return ()
+        go mm = void $ send cm (frequency mm) (file mm)
