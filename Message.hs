@@ -15,12 +15,9 @@ import Command
 import Telemetry
 import Parameter
 import Variable
+import Types
 
 
-type MessageID = Byte
-
-
-data Message a = Message MessageID a deriving (Show)
 
 
 instance (FromJSON a) => FromJSON (Message a) where
@@ -28,11 +25,6 @@ instance (FromJSON a) => FromJSON (Message a) where
     parseJSON json@(Object o) = Message <$> (read <$> o .: "mid") <*> parseJSON json
     parseJSON _ = error "Invalid message definition."
 
-
-data MessageDef a = MessageDef {
-    variables :: [Variable]
-   ,message :: Message a
-} deriving (Show, Generic)
 
 instance (FromJSON a) => FromJSON (MessageDef a)
 

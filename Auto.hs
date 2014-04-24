@@ -1,22 +1,21 @@
 module Auto where
 
-import Control.Monad.Trans.Reader (ReaderT, runReaderT, ask)
+import Control.Monad.Reader (Reader, runReader, asks)
 import Control.Applicative ((<$>))
 import qualified Data.Map as M
+import Types
 
-type Env a = (M.Map String a)
 
-
-envLookup :: (Show a) => String -> Auto a a
+envLookup :: String -> Auto Parameter
 envLookup key = do
-    maybeVal <- M.lookup key <$> ask
+    maybeVal <- M.lookup key <$> asks envC
     case maybeVal of
         Just v -> return v
         Nothing -> error $ "Undefined environment variable: " ++ key
 
 
-type Auto a = ReaderT (Env a) IO
+type Auto = Reader Config
 
 
-runAuto :: Auto a b -> Env a -> IO b
-runAuto = runReaderT
+runAuto :: Auto a -> Config -> a
+runAuto = runReader

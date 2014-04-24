@@ -5,15 +5,9 @@ module Variable (
     Variable (..)
 ) where
 
---import Data.Int (Int8, Int16, Int32, Int64)
-import Data.Word (Word8, Word16, Word32, Word64)
 import Data.Aeson
 import Data.Aeson.Types
-import Control.Applicative ((<$>))
-
-
-data Variable = F String [Float]
-              | W8 String [Word8] deriving (Show)
+import Types
 
 
 instance FromJSON Variable where
@@ -25,8 +19,12 @@ instance FromJSON Variable where
             "range" -> makeRange element_type id_
             _       -> undefined
         where
-            makeRange "float" id_ = F id_ <$> rangeList o
-            makeRange "uint8" id_ = W8 id_ <$> rangeList o
+            makeRange "float" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map F vals)
+            makeRange "uint8" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map W8 vals)
             makeRange _ id_ = undefined
 
             rangeList obj = do

@@ -6,9 +6,11 @@ module CCSDS where
 import Data.BitVector
 import Control.Exception.Base (assert)
 import Control.Applicative ((<$>))
+import qualified Data.ByteString.Lazy as B
 import Common
 import Parameter
 import Auto
+import Types
 
 
 packetVersionNumber :: BV
@@ -27,7 +29,7 @@ sequenceCount :: BV
 sequenceCount = zeros 14
 
 
-packetDataLength :: (CCSDS a) => a -> Auto Parameter BV
+packetDataLength :: (CCSDS a) => a -> Auto BV
 packetDataLength m = do
     pl <- length <$> payload m
     return . bitVec 16 $ length (secondaryHeader m) + pl
@@ -41,11 +43,11 @@ class (Show a) => CCSDS a where
 
     secondaryHeader :: a -> [Byte]
 
-    payload :: a -> Auto Parameter [Byte]
+    payload :: a -> Auto [Byte]
 
 
 
-primaryHeader :: (CCSDS a) => a -> Auto Parameter BV
+primaryHeader :: (CCSDS a) => a -> Auto BV
 primaryHeader m = do
     dataLength <- packetDataLength m
     return $ packetVersionNumber
@@ -57,20 +59,20 @@ primaryHeader m = do
              # dataLength
 
 
-header :: (CCSDS a) => a -> Auto Parameter [Byte]
+header :: (CCSDS a) => a -> Auto [Byte]
 header m = do
     pri <- bits2bytes . toBits <$> primaryHeader m
     return $ pri ++ secondaryHeader m
 
 
-packet :: (CCSDS a) => a -> Auto Parameter [Byte]
+packet :: (CCSDS a) => a -> Auto [Byte]
 packet m = do
     p <- payload m
     h <- swapBytes <$> header m
     return $ h ++ p
 
 
-packCCSDS :: (CCSDS a) => a -> Auto Parameter [Byte]
+packCCSDS :: (CCSDS a) => a -> Auto B.ByteString
 packCCSDS m = do
     p <- packet m
     pri <- primaryHeader m
@@ -79,4 +81,4 @@ packCCSDS m = do
     let check1 = size pri == 6 * 8 --bits
     let check2 = length pld + length (secondaryHeader m) == len + 1
     let checkAll = check1 -- && check2
-    return $ assert checkAll p
+    return $ assert checkAll (B.pack p)

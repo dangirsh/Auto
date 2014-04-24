@@ -1,12 +1,7 @@
 module Common where
 
 import Data.BitVector hiding (showHex)
-import Data.Word
-
-
-type Byte = Word8
-
-type Frequency = Double
+import Types
 
 
 safeBitVec :: (Integral a, Show a) => Int -> a -> BV

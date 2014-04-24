@@ -6,10 +6,8 @@ module Telemetry (
 
 import GHC.Generics (Generic)
 import Data.Aeson (FromJSON)
-import Parameter
-
-
-data Telemetry = Telemetry {parameters :: [Parameter]} deriving (Generic)
+import Types
+import Parameter()
 
 instance FromJSON Telemetry
 
