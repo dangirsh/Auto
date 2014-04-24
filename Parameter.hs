@@ -1,22 +1,25 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Parameter (
-     Parameter
+     Parameter (..)
     ,packParam
 ) where
 
 import Control.Applicative ((<$>), (<*>))
 import Data.Aeson
 import Data.Aeson.Types
+import Data.Aeson.Types
 import Data.Int (Int8, Int16, Int32, Int64)
--- unsigned ints
 import Data.Word (Word8, Word16, Word32, Word64)
 import Data.Vector (toList)
 import Numeric (showHex)
 import qualified Data.ByteString.Lazy as B
 import Data.ByteString.Lazy.Builder
 import Foreign.Marshal.Utils (fromBool)
+import qualified Data.Map as M
+import qualified Data.Text as T
 import Common
+import Auto
 
 
 data Parameter = S   String String Int
@@ -32,27 +35,28 @@ data Parameter = S   String String Int
                | F   String Float
                | D   String Double
                | Arr String [Parameter]
+               | Var String
 
 
-packParam :: Parameter -> [Byte]
-packParam (S _ s n) = b2w (string7 s) ++ replicate (n-(length s)) 0
-packParam (B _ b)   = b2w . word8 . fromBool $ b
-packParam (I8 _ i)  = b2w . int8 $ i
-packParam (W8 _ w)  = b2w . word8 $ w
-packParam (I16 _ i) = b2w . int16LE $ i
-packParam (W16 _ w) = b2w . word16LE $ w
-packParam (I32 _ i) = b2w . int32LE $ i
-packParam (W32 _ w) = b2w . word32LE $ w
-packParam (I64 _ i) = b2w . int64LE $ i
-packParam (W64 _ w) = b2w . word64LE $ w
-packParam (F _ f)   = b2w . floatLE $ f
-packParam (D _ d)   = b2w . doubleLE $ d
-packParam (Arr _ ps)   = concatMap packParam ps
+packParam :: Parameter -> Auto Parameter [Byte]
+packParam (S _ s n) = return $ b2w (string7 s) ++ replicate (n-(length s)) 0
+packParam (B _ b)   = return $ b2w . word8 . fromBool $ b
+packParam (I8 _ i)  = return $ b2w . int8 $ i
+packParam (W8 _ w)  = return $ b2w . word8 $ w
+packParam (I16 _ i) = return $ b2w . int16LE $ i
+packParam (W16 _ w) = return $ b2w . word16LE $ w
+packParam (I32 _ i) = return $ b2w . int32LE $ i
+packParam (W32 _ w) = return $ b2w . word32LE $ w
+packParam (I64 _ i) = return $ b2w . int64LE $ i
+packParam (W64 _ w) = return $ b2w . word64LE $ w
+packParam (F _ f)   = return $ b2w . floatLE $ f
+packParam (D _ d)   = return $ b2w . doubleLE $ d
+packParam (Arr _ ps) = concat <$> mapM packParam ps
+packParam (Var name) = envLookup name >>= packParam
 
 
 b2w :: Builder -> [Byte]
 b2w = B.unpack . toLazyByteString
-
 
 
 instance FromJSON Parameter where
@@ -80,7 +84,10 @@ instance FromJSON Parameter where
             t -> error $ "Invalid argument type: " ++ t
         where
             makeElem t v = object ["type" .= t, "value" .= v]
-    parseJSON _ = undefined
+
+    parseJSON (String s) = return $ Var (T.unpack s)
+
+    parseJSON _ = error "Invalid parameter type."
 
 
 instance Show Parameter where
@@ -98,7 +105,8 @@ instance Show Parameter where
     show p@(F l _)   = showParam p l
     show p@(D l _)   = showParam p l
     show p@(Arr l _) = showParam p l
+    show p@(Var l) = showParam p l
 
 
 showParam :: Parameter -> String -> String
-showParam p l = l ++ ":" ++ concatMap (`showHex` "|")  (packParam p)
+showParam p l = l ++ ":FIX" -- ++ concatMap (`showHex` "|") (packParam p)

@@ -3,28 +3,12 @@
         "ip": "127.0.0.1",
         "port": 1234
     },
+    "sequenced": [],
     "parallel": [
         {
-            "file": "fog.msg",
+            "file": "ac_set_mode.tlm",
             "frequency": 1,
-            "repetitions": 10000
-        },
-        {
-            "file": "cmg.msg",
-            "frequency": 1,
-            "repetitions": 10000
-        },
-        {
-            "file": "ac_set_mode.msg",
-            "frequency": 1,
-            "repetitions": 10000
-        }
-    ],
-    "sequenced": [
-        {
-            "file": "ac_noop.msg",
-            "frequency": 1,
-            "repetitions": 5
+            "repetitions": 1
         }
     ]
 }

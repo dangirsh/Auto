@@ -1,0 +1,53 @@
+{
+    "variables": [
+        {
+            "id": "t_gps1980",
+            "type": "range",
+            "element_type": "float",
+            "start": 0,
+            "end": 10,
+            "spacing": 1
+        },
+        {
+            "id": "enabled_CMGs",
+            "type": "range",
+            "element_type": "uint8",
+            "start": 0,
+            "end": 4,
+            "spacing": 2
+        }
+    ],
+    "message": {
+        "mid": "0xCC",
+        "parameters": [
+            "t_gps1980",
+            "enabled_CMGs",
+            {
+                "type": "uint8",
+                "value": 0,
+                "label": "_"
+            },
+            {
+                "type": "uint8",
+                "value": 0,
+                "label": "_"
+            },
+            {
+                "type": "uint8",
+                "value": 0,
+                "label": "_"
+            },
+            {
+                "type": "uint8",
+                "value": 0,
+                "label": "_"
+            },
+            {
+                "type": "array",
+                "element_type": "uint8",
+                "values": [0,0,0],
+                "label": "_"
+            }
+       ]
+    }
+}

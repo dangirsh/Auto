@@ -12,11 +12,7 @@ import qualified Data.ByteString.Lazy as B
 
 type Byte = Word8
 
-type MessageID = Byte
-
-type CommandCode = Byte
-
-
+type Frequency = Double
 
 
 safeBitVec :: (Integral a, Show a) => Int -> a -> BV

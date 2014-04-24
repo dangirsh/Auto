@@ -2,8 +2,8 @@
 
 module Controller where
 
-import GHC.Generics (Generic)
 import Data.Aeson (FromJSON)
+import GHC.Generics (Generic)
 
 
 data Controller = Controller {
@@ -26,7 +26,7 @@ instance FromJSON ControllerMeta
 data MessageMeta = MessageMeta {
      file :: FilePath
     ,frequency :: Double
-    ,repetitions :: Int
 } deriving (Show, Generic)
 
 instance FromJSON MessageMeta
+

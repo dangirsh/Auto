@@ -1,30 +1,22 @@
+{-# LANGUAGE DeriveGeneric #-}
+
 module Telemetry (
     Telemetry (..)
 ) where
 
-import Data.BitVector (fromBool)
 import Common
 import CCSDS
 import Numeric (showHex)
+import GHC.Generics (Generic)
+import Data.Aeson (FromJSON)
 import Parameter
 
 
-data Telemetry = Telemetry MessageID [Parameter]
+data Telemetry = Telemetry {parameters :: [Parameter]} deriving (Generic)
+
+instance FromJSON Telemetry
 
 
 instance Show Telemetry where
 
-    show (Telemetry mid ps) = "TLM: mid:"
-                             ++ showHex mid " "
-                             ++ show ps
-
-
-instance CCSDS Telemetry where
-
-    packetType = const $ fromBool False
-
-    applicationProcessId (Telemetry mid _) = safeBitVec 11 mid
-
-    secondaryHeader =  const $ [0, 0, 0, 0, 0, 0] -- timestamp
-
-    payload (Telemetry _ ps) = concatMap packParam ps
+    show (Telemetry ps) = "TLM: " ++ show ps
