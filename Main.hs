@@ -69,4 +69,5 @@ pack (MessageDef {variables=vs, message=m}) =
             let jaggedPairs = map varToPairs vs in
             let smallestLen = minimum . map length $ jaggedPairs in
             let flushPairs = map (take smallestLen) jaggedPairs in
-            map (Config . M.fromList) . transpose $ flushPairs
+            let allEnvs = map (Config . M.fromList) . transpose $ flushPairs in
+            if (null allEnvs) then [Config M.empty] else allEnvs -- hack around case for no variables

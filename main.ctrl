@@ -6,9 +6,8 @@
     "sequenced": [],
     "parallel": [
         {
-            "file": "ac_set_mode.tlm",
-            "frequency": 1,
-            "repetitions": 1
+            "file": "ops_test.cmd",
+            "frequency": 1
         }
     ]
 }

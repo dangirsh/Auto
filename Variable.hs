@@ -19,12 +19,36 @@ instance FromJSON Variable where
             "range" -> makeRange element_type id_
             _       -> undefined
         where
-            makeRange "float" id_ = do
-                vals <- rangeList o
-                return $ Variable id_ (map F vals)
             makeRange "uint8" id_ = do
                 vals <- rangeList o
                 return $ Variable id_ (map W8 vals)
+            makeRange "uint16" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map W16 vals)
+            makeRange "uint32" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map W32 vals)
+            makeRange "uint64" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map W64 vals)
+            makeRange "int8" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map I8 vals)
+            makeRange "int16" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map I16 vals)
+            makeRange "int32" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map I32 vals)
+            makeRange "int64" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map I64 vals)
+            makeRange "float" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map F vals)
+            makeRange "double" id_ = do
+                vals <- rangeList o
+                return $ Variable id_ (map D vals)
             makeRange _ id_ = undefined
 
             rangeList obj = do
