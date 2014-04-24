@@ -23,12 +23,13 @@ instance FromJSON Parameter where
 
     parseJSON (Object o) = Parameter <$> o .:? "label" .!= "unnamed"<*> parseJSON (Object o)
 
-    parseJSON (String s) = return $ Parameter "var" (Var (T.unpack s))
+    parseJSON (String s) = return $ Parameter (T.unpack s) (Var (T.unpack s))
 
     parseJSON _ = error "Invalid parameter type."
 
 
-instance Show Parameter where
+instance AutoShow Parameter where
 
-    show (Parameter _ (Var id_)) = id_ ++ ":" ++ "<var>"
-    show (Parameter s d) = s ++ ":" ++ concatMap (`showHex` "|") (packData d)
+    autoShow p@(Parameter s _) = do
+        packed <- packParam p
+        return $ s ++ ":" ++ concatMap (`showHex` "|") packed

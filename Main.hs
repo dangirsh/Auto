@@ -46,10 +46,10 @@ runner (Controller {meta=cm, sequenced=s, parallel=p}) =
 
 run :: ControllerMeta -> MessageMeta -> IO ()
 run (ControllerMeta {ip, port}) (MessageMeta {file, frequency}) = do
-    packed <- getPacked
-    forM_ packed $ (\p -> do
-        sendUDP ip port p
-        print p
+    packed <- (uncurry zip) <$> getPacked
+    forM_ packed $ (\(bs, s) -> do
+        sendUDP ip port bs
+        print s
         hFlush stdout
         threadDelay . round $ 1000000 / frequency
         )
@@ -60,12 +60,12 @@ run (ControllerMeta {ip, port}) (MessageMeta {file, frequency}) = do
                 ".cmd" -> pack <$> (parseFile file :: IO (MessageDef Command))
 
 
-pack :: (FromJSON a, CCSDS (Message a)) => MessageDef a -> [B.ByteString]
+pack :: (FromJSON a, CCSDS (Message a), AutoShow a) => MessageDef a -> ([B.ByteString], [String])
 pack (MessageDef {variables=vs, message=m}) = do
-    map (runAuto (packCCSDS m)) $ makeEnvs vs
+    (map (runAuto (packCCSDS m)) envs, map (runAuto (autoShow m)) envs)
     where
         varToPairs (Variable id_ ds) = [(id_, Parameter id_ d) | d <- ds]
-        makeEnvs vs =
+        envs =
             let jaggedPairs = map varToPairs vs in
             let smallestLen = minimum . map length $ jaggedPairs in
             let flushPairs = map (take smallestLen) jaggedPairs in

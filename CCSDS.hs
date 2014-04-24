@@ -35,7 +35,7 @@ packetDataLength m = do
     return . bitVec 16 $ length (secondaryHeader m) + pl
 
 
-class (Show a) => CCSDS a where
+class CCSDS a where
 
     packetType :: a -> BV
 

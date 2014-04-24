@@ -25,28 +25,28 @@
             {
                 "type": "uint8",
                 "value": 0,
-                "label": "_"
+                "label": "GAC_on"
             },
             {
                 "type": "uint8",
                 "value": 0,
-                "label": "_"
+                "label": "CMGs_enabled"
             },
             {
                 "type": "uint8",
                 "value": 0,
-                "label": "_"
+                "label": "RCS_enabled"
             },
             {
                 "type": "uint8",
                 "value": 0,
-                "label": "_"
+                "label": "RWA_enabled"
             },
             {
                 "type": "array",
                 "element_type": "uint8",
                 "values": [0,0,0],
-                "label": "_"
+                "label": "padding"
             }
        ]
     }

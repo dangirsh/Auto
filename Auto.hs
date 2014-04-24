@@ -19,3 +19,8 @@ type Auto = Reader Config
 
 runAuto :: Auto a -> Config -> a
 runAuto = runReader
+
+
+class AutoShow a where
+
+    autoShow :: a -> Auto String

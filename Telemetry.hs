@@ -4,14 +4,18 @@ module Telemetry (
     Telemetry(Telemetry)
 ) where
 
+import Control.Applicative ((<$>))
 import GHC.Generics (Generic)
 import Data.Aeson (FromJSON)
 import Types
+import Auto
 import Parameter()
 
 instance FromJSON Telemetry
 
 
-instance Show Telemetry where
+instance AutoShow Telemetry where
 
-    show (Telemetry ps) = "TLM: " ++ show ps
+    autoShow (Telemetry ps) = do
+        sp <- concat <$> mapM autoShow ps
+        return $ "TLM: " ++ sp

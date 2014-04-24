@@ -53,32 +53,32 @@ data Telemetry = Telemetry {
 } deriving (Generic)
 
 
-data Message a = Message MessageID a deriving (Show)
+data Message a = Message MessageID a
 
 
 data MessageDef a = MessageDef {
     variables :: [Variable]
    ,message :: Message a
-} deriving (Show, Generic)
+} deriving (Generic)
 
 
 data MessageMeta = MessageMeta {
      file :: FilePath
     ,frequency :: Double
-} deriving (Show, Generic)
+} deriving (Generic)
 
 
 data Controller = Controller {
      meta :: ControllerMeta
     ,sequenced :: [MessageMeta]
     ,parallel :: [MessageMeta]
-} deriving (Show, Generic)
+} deriving (Generic)
 
 
 data ControllerMeta = ControllerMeta {
      ip :: String
     ,port :: Integer
-} deriving (Show, Generic)
+} deriving (Generic)
 
 
 data Config = Config {
