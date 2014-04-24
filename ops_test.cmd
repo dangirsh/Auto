@@ -25,6 +25,18 @@
                 "value": 4
             },
             {
+                "type": "string",
+                "length": 8,
+                "label": "str",
+                "value": "abcd"
+            },
+            {
+                "type": "array",
+                "element_type": "uint8",
+                "label": "intArr",
+                "values": [5, 6, 7, 8]
+            },
+            {
                 "type": "float",
                 "label": "e",
                 "value": 9

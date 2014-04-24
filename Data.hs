@@ -12,7 +12,7 @@ import Data.Aeson.Types
 import Data.List.Split
 import Types
 import Debug.Trace (trace)
-import Data.Text.Internal (showText)
+import qualified Data.Text as T
 
 
 packData :: Data -> [Byte]
@@ -41,13 +41,13 @@ instance FromJSON Data where
     parseJSON (Object o) = do
         typ <- o .: "type"
         case typ of
-            --"array"  -> do
-            --    elemTyp <- (o .: "element_type") :: Parser String
-            --    vals <- (o .: "values") :: Parser Array
-            --    elems <- mapM (parseJSON . makeElem elemTyp) (toList vals)
-            --    return $ Arr elems
+            "array"  -> do
+                elemTyp <- (o .: "element_type") :: Parser String
+                vals <- (o .: "values") :: Parser Array
+                elems <- mapM (parseJSON . makeElem elemTyp) (toList vals)
+                return $ Arr elems
             "string" -> do
-                len <- o .: "length" :: Parser Value
+                (Number len) <- o .: "length" :: Parser Value
                 val <- o .: "value" :: Parser Value
                 return $ fromParse (typ ++ ":" ++ (show len)) val
             _ -> fromParse typ <$> o .: "value"
@@ -61,12 +61,13 @@ fromParse :: String -> Value -> Data
 fromParse "bool"   (Bool b)   = B b
 fromParse "float"  (Number f) = F   (read . show $ f)
 fromParse "double" (Number d) = D   (read . show $ d)
-fromParse "uint8"  (Number u) = W8  (read . show $ u)
-fromParse "uint16" (Number u) = W16 (read . show $ u)
-fromParse "uint32" (Number u) = W32 (read . show $ u)
-fromParse "uint64" (Number u) = W64 (read . show $ u)
-fromParse "int8"   (Number i) = I8  (read . show $ i)
-fromParse "int16"  (Number i) = I16 (read . show $ i)
-fromParse "int32"  (Number i) = I32 (read . show $ i)
-fromParse "int64"  (Number i) = I64 (read . show $ i)
-fromParse x (String s) = let [_, len] = splitOn ":" x in S (showText s, read len)
+fromParse "uint8"  (Number u) = W8  (read . show . round $ u)
+fromParse "uint16" (Number u) = W16 (read . show . round $ u)
+fromParse "uint32" (Number u) = W32 (read . show . round $ u)
+fromParse "uint64" (Number u) = W64 (read . show . round $ u)
+fromParse "int8"   (Number i) = I8  (read . show . round $ i)
+fromParse "int16"  (Number i) = I16 (read . show . round $ i)
+fromParse "int32"  (Number i) = I32 (read . show . round $ i)
+fromParse "int64"  (Number i) = I64 (read . show . round $ i)
+--fromParse "array"  (Array  a) = Arr (read . show . round $ i)
+fromParse x (String s) = let [_, len] = splitOn ":" x in S (T.unpack s, round . read $ len)
