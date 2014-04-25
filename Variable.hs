@@ -9,6 +9,7 @@ import Control.Applicative ((<$>))
 import Data.Aeson
 import Data.Aeson.Types
 import Data.Attoparsec.Number (Number)
+import Data.Vector (toList)
 import Data (fromParse)
 import Types
 
@@ -18,10 +19,14 @@ instance FromJSON Variable where
         typ <- o .: "type" :: Parser String
         id_ <- o .: "id"
         element_type <- o .: "element_type" :: Parser String
-        nums <- (rangeList o :: Parser [Value])
-        let dats = map (fromParse element_type) nums
         case typ of
-            "range" -> return $ Variable id_ dats
+            "cycle" -> do
+                dats <- map (fromParse element_type) <$> (rangeList o :: Parser [Value])
+                return $ Variable id_ (cycle dats)
+            "sequence" -> do
+                vals <- toList <$> (o .: "values" :: Parser Array)
+                let dats = map (fromParse element_type) vals
+                return $ Variable id_ (cycle dats)
             _       -> undefined
         where
             rangeList obj = do

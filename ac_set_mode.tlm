@@ -2,7 +2,7 @@
     "variables": [
         {
             "id": "t_gps1980",
-            "type": "range",
+            "type": "cycle",
             "element_type": "float",
             "start": 0,
             "end": 10,
@@ -10,11 +10,9 @@
         },
         {
             "id": "enabled_CMGs",
-            "type": "range",
+            "type": "sequence",
             "element_type": "uint8",
-            "start": 0,
-            "end": 4,
-            "spacing": 2
+            "values": [1,2,4,8,16,32,64,128]
         }
     ],
     "message": {

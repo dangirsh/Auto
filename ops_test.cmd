@@ -2,7 +2,7 @@
     "variables" : [
         {
             "id": "a",
-            "type": "range",
+            "type": "cycle",
             "element_type": "uint8",
             "start": 0,
             "end": 20,

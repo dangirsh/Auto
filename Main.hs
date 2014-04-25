@@ -4,7 +4,8 @@
 import System.Environment (getArgs)
 import Control.Monad
 import Control.Applicative ((<$>))
-import Control.Concurrent
+import Control.Concurrent.Async
+import Control.Concurrent (threadDelay)
 import System.FilePath.Posix (takeExtensions)
 import System.IO (hFlush, stdout)
 import Data.Aeson (FromJSON)
@@ -19,26 +20,20 @@ import CCSDS
 import Controller()
 import Message()
 
+
 main :: IO ()
-main = getArgs >>= mapM_ (parseFile >=> runner)
---main = (parseFile >=> runner) "main.ctrl"
-
-
-myForkIO :: IO () -> IO (MVar ())
-myForkIO io = do
-    mvar <- newEmptyMVar
-    forkFinally io (\_ -> putMVar mvar ())
-    return mvar
-
-
-myForkIOs :: [IO ()] -> IO ()
-myForkIOs actions = mapM myForkIO actions >>= mapM_ takeMVar
+--main = getArgs >>= mapM_ (parseFile >=> runner)
+main = (parseFile >=> runner) "main.ctrl"
 
 
 runner :: Controller -> IO ()
-runner (Controller {meta, sequenced, parallel}) =
+runner (Controller {meta, sequenced, parallel}) = do
+    s <- async $ mapM_ (run meta) sequenced
+    mapConcurrently (run meta) parallel
+    wait s
+
     --sequence_ $ mapM_ (run meta) sequenced : map (run meta) parallel
-    myForkIOs $ mapM_ (run meta) sequenced : map (run meta) parallel
+    --myForkIOs $ mapM_ (run meta) sequenced : map (run meta) parallel
 
 
 run :: ControllerMeta -> MessageMeta -> IO ()
@@ -59,11 +54,11 @@ run (ControllerMeta {ip, port}) (MessageMeta {file, frequency}) = do
 
 
 pack :: (FromJSON a, CCSDS (Message a), AutoShow a) => MessageDef a -> ([B.ByteString], [String])
-pack (MessageDef {variables=vs, message=m}) =
-    (map (runAuto (packCCSDS m)) envs, map (runAuto (autoShow m)) envs)
+pack (MessageDef {variables=vs, message=m}) = (f packCCSDS, f autoShow)
     where
-        varToPairs (Variable id_ ds) = cycle [(id_, Parameter id_ d) | d <- ds]
+        f g = map (runAuto (g m)) envs
+        varToPairs (Variable id_ ds) = [(id_, Parameter id_ d) | d <- ds]
         envs =
             case map (Config . M.fromList) . transpose . map varToPairs $ vs of
-                [] -> cycle [Config M.empty] -- hack around case for no variables
+                [] -> [Config M.empty] -- hack around case for no variables
                 xs -> xs
