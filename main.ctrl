@@ -3,10 +3,14 @@
         "ip": "127.0.0.1",
         "port": 1234
     },
-    "parallel": [],
-    "sequenced": [
+    "sequenced": [],
+    "parallel": [
         {
             "file": "ac_set_mode.tlm",
+            "frequency": 1
+        },
+        {
+            "file": "ops_test.cmd",
             "frequency": 1
         }
     ]

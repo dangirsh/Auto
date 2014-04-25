@@ -20,8 +20,8 @@ import Controller()
 import Message()
 
 main :: IO ()
---main = getArgs >>= mapM_ (parseFile >=> runner)
-main = (parseFile >=> runner) "main.ctrl"
+main = getArgs >>= mapM_ (parseFile >=> runner)
+--main = (parseFile >=> runner) "main.ctrl"
 
 
 myForkIO :: IO () -> IO (MVar ())
@@ -37,8 +37,8 @@ myForkIOs actions = mapM myForkIO actions >>= mapM_ takeMVar
 
 runner :: Controller -> IO ()
 runner (Controller {meta, sequenced, parallel}) =
-    sequence_ $ mapM_ (run meta) sequenced : map (run meta) parallel
-    --myForkIOs $ mapM_ (run meta) sequenced : map (run meta) parallel
+    --sequence_ $ mapM_ (run meta) sequenced : map (run meta) parallel
+    myForkIOs $ mapM_ (run meta) sequenced : map (run meta) parallel
 
 
 run :: ControllerMeta -> MessageMeta -> IO ()

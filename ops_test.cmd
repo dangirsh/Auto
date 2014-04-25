@@ -1,14 +1,19 @@
 {
-    "variables" : [],
+    "variables" : [
+        {
+            "id": "a",
+            "type": "range",
+            "element_type": "uint8",
+            "start": 0,
+            "end": 20,
+            "spacing": 3
+        }
+    ],
     "message": {
         "mid": "0xCA",
         "cc" : 11,
         "arguments": [
-            {
-                "type": "uint8",
-                "label": "a",
-                "value": 1
-            },
+            "a",
             {
                 "type": "uint8",
                 "label": "b",
