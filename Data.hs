@@ -71,3 +71,4 @@ fromParse "int32"  (Number i) = I32 (read . show . round $ i)
 fromParse "int64"  (Number i) = I64 (read . show . round $ i)
 --fromParse "array"  (Array  a) = Arr (read . show . round $ i)
 fromParse x (String s) = let [_, len] = splitOn ":" x in S (T.unpack s, round . read $ len)
+fromParse x _ = error $ "Invalid data type: " ++ x

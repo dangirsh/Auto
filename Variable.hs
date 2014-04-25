@@ -19,7 +19,7 @@ instance FromJSON Variable where
         id_ <- o .: "id"
         element_type <- o .: "element_type" :: Parser String
         nums <- (rangeList o :: Parser [Value])
-        let dats = map (fromParse typ) nums
+        let dats = map (fromParse element_type) nums
         case typ of
             "range" -> return $ Variable id_ dats
             _       -> undefined
