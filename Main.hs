@@ -22,8 +22,8 @@ import Message()
 
 
 main :: IO ()
---main = getArgs >>= mapM_ (parseFile >=> runner)
-main = (parseFile >=> runner) "main.ctrl"
+main = getArgs >>= mapM_ (parseFile >=> runner)
+--main = (parseFile >=> runner) "main.ctrl"
 
 
 runner :: Controller -> IO ()
