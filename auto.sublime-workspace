@@ -4,16 +4,44 @@
 		"selected_items":
 		[
 			[
+				"range",
+				"rangeList"
+			],
+			[
+				"var",
+				"varToPairs"
+			],
+			[
+				"By",
+				"ByteString"
+			],
+			[
+				"Me",
+				"MessageDef"
+			],
+			[
+				"freq",
+				"frequencyC"
+			],
+			[
+				"u",
+				"uint8"
+			],
+			[
+				"rang",
+				"rangeList"
+			],
+			[
+				"ran",
+				"rangeList"
+			],
+			[
 				"ru",
 				"runIdentity"
 			],
 			[
 				"Messag",
 				"MessageDef"
-			],
-			[
-				"var",
-				"varToMap"
 			],
 			[
 				"mak",
@@ -66,10 +94,6 @@
 			[
 				"word",
 				"word32BE"
-			],
-			[
-				"u",
-				"undefined"
 			],
 			[
 				"Word",
@@ -158,10 +182,6 @@
 			[
 				"M",
 				"Message"
-			],
-			[
-				"freq",
-				"frequency"
 			],
 			[
 				"mess",
@@ -494,26 +514,6 @@
 			[
 				"Ste",
 				"SteeringLawInfo"
-			],
-			[
-				"Unl",
-				"AC_UnloadSteeringLaw"
-			],
-			[
-				"uint",
-				"uint8"
-			],
-			[
-				"defau",
-				"defaultId"
-			],
-			[
-				"Steer",
-				"SteeringLawsInfo"
-			],
-			[
-				"Steeri",
-				"SteeringLawInfo"
 			]
 		]
 	},
@@ -523,7 +523,15 @@
 			"file": "Main.hs",
 			"settings":
 			{
-				"buffer_size": 696,
+				"buffer_size": 2076,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Message.hs",
+			"settings":
+			{
+				"buffer_size": 1417,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,31 +539,7 @@
 			"file": "Command.hs",
 			"settings":
 			{
-				"buffer_size": 466,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Auto.hs",
-			"settings":
-			{
-				"buffer_size": 677,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Send.hs",
-			"settings":
-			{
-				"buffer_size": 2279,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Types.hs",
-			"settings":
-			{
-				"buffer_size": 812,
+				"buffer_size": 373,
 				"line_ending": "Unix"
 			}
 		},
@@ -563,7 +547,55 @@
 			"file": "Parameter.hs",
 			"settings":
 			{
-				"buffer_size": 3345,
+				"buffer_size": 830,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Data.hs",
+			"settings":
+			{
+				"buffer_size": 2691,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Types.hs",
+			"settings":
+			{
+				"buffer_size": 1513,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Telemetry.hs",
+			"settings":
+			{
+				"buffer_size": 335,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Auto.hs",
+			"settings":
+			{
+				"buffer_size": 512,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.ctrl",
+			"settings":
+			{
+				"buffer_size": 1068,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Variable.hs",
+			"settings":
+			{
+				"buffer_size": 1353,
 				"line_ending": "Unix"
 			}
 		}
@@ -780,29 +812,42 @@
 	},
 	"file_history":
 	[
+		"/home/dan/Copy/projects/Auto/Types.hs",
+		"/home/dan/Copy/projects/Auto/Parse.hs",
 		"/home/dan/Copy/projects/Auto/Common.hs",
 		"/home/dan/Copy/projects/Auto/Controller.hs",
-		"/home/dan/Copy/projects/Auto/CCSDS.hs",
-		"/home/dan/Copy/projects/Auto/Parse.hs",
-		"/home/dan/Copy/projects/Auto/Message.hs",
-		"/home/dan/Copy/projects/Auto/Telemetry.hs",
-		"/home/dan/Copy/projects/Auto/Variable.hs",
-		"/home/dan/Copy/projects/Auto/auto",
-		"/home/dan/Copy/projects/Auto/ac_set_mode.tlm",
-		"/home/dan/Copy/projects/Auto/main.ctrl",
 		"/home/dan/Copy/projects/Auto/Command.hs",
+		"/home/dan/Copy/projects/Auto/ops_test.cmd",
 		"/home/dan/Copy/projects/Auto/Parameter.hs",
+		"/home/dan/Copy/projects/Auto/Message.hs",
+		"/home/dan/Copy/projects/Auto/ac_set_mode.tlm",
+		"/home/dan/Copy/projects/Auto/Send.hs",
+		"/home/dan/Copy/projects/Auto/ac_noop.cmd",
+		"/home/dan/Copy/projects/Auto/Telemetry.hs",
+		"/home/dan/Copy/projects/Auto/main.ctrl",
+		"/home/dan/Copy/projects/Auto/ekf.tlm",
+		"/home/dan/Copy/projects/Auto/sun_sens.msg",
+		"/home/dan/Copy/projects/Auto/st.msg",
+		"/home/dan/Copy/projects/Auto/ops_test.msg",
+		"/home/dan/Copy/projects/Auto/gps.msg",
+		"/home/dan/Copy/projects/Auto/cmg.msg",
+		"/home/dan/Copy/projects/Auto/ekf.msg",
+		"/home/dan/Copy/projects/Auto/fog.msg",
+		"/home/dan/Copy/projects/Auto/cdh.msg",
+		"/home/dan/Copy/projects/Auto/ac_noop.msg",
+		"/home/dan/Copy/projects/Auto/ac_set_mode.msg",
+		"/home/dan/Copy/projects/Auto/cmg.tlm",
+		"/home/dan/Copy/projects/Auto/Main.hs",
+		"/home/dan/Copy/projects/Auto/Variable.hs",
+		"/home/dan/Copy/projects/Auto/Data.hs",
+		"/home/dan/Copy/projects/Auto/CCSDS.hs",
+		"/home/dan/Copy/projects/Auto/test.json",
 		"/home/dan/Copy/projects/Auto/auto.sublime-project",
 		"/home/dan/Copy/projects/Auto/Auto.hs",
+		"/home/dan/Copy/projects/Auto/auto",
 		"/home/dan/Copy/projects/Auto/README.md",
-		"/home/dan/Copy/projects/Auto/Send.hs",
-		"/home/dan/Copy/projects/Auto/Main.hs",
-		"/home/dan/Copy/projects/Auto/ac_noop.cmd",
 		"/home/dan/Copy/projects/Auto/.gitignore",
-		"/home/dan/Copy/projects/Auto/ekf.tlm",
 		"/home/dan/Copy/backup/.config/sublime-text-3/Packages/Alignment/Default (Linux).sublime-keymap",
-		"/home/dan/Copy/projects/Auto/cmg.tlm",
-		"/home/dan/Copy/projects/Auto/ops_test.cmd",
 		"/home/dan/ACS/ACS/apps/ac/fsw/src/ac_autocode.c",
 		"/home/dan/ACS/ACS/apps/pil_out/fsw/src/pil_out_app.c",
 		"/home/dan/ACS/ACS/cfe/fsw/cfe-core/src/tbl/cfe_tbl_api.c",
@@ -894,20 +939,7 @@
 		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/electro_results.tex",
 		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/faraday.tex",
 		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/magneto_apparatus.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/macros.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/beamercolorthememule.sty",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/chiral.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/electro.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/tex/report.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/magneto.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/pres.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/review.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/motivation.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/beamerthemeKalgan.sty",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/birefringence.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/title.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/background.tex",
-		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/tex/report.bib"
+		"/home/dan/Copy/Cornell/Semester8/4410/Lab1/presentation/macros.tex"
 	],
 	"find":
 	{
@@ -918,6 +950,8 @@
 		"height": 114.0,
 		"where_history":
 		[
+			"*.hs",
+			".hs",
 			"",
 			"*.h",
 			"*.c",
@@ -1030,134 +1064,134 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"Endianness",
-			"endianness",
-			"Env",
-			"type",
-			"getFile",
-			"Auto Parameter",
-			"Auto",
-			"Common",
-			"import",
-			"IO",
-			"hflush",
-			"Class",
-			"String",
-			"runWriterT",
-			"String",
-			"Writer",
-			"Auto",
-			"Text",
-			"showParam",
-			"ppShow",
-			"o",
-			"rangeList",
-			"makeRangeList",
-			"o",
-			"cc",
-			"ppShow",
-			"Telemetry",
-			"Command",
-			"myForkIOs",
-			"MessageDef",
-			"ScopedTypeVariables",
-			"Command",
-			"DeriveGeneric",
-			"Show",
-			"show",
-			"undefined",
-			"Command",
-			"payload",
-			" = ",
-			" =",
-			"Telemetry",
-			"(Command",
-			" =",
-			"Telemetry",
-			"Command",
-			"fromJSON",
-			"Common",
-			"Generic",
-			"myForkIOs",
-			"hi",
-			"cleanParis",
-			"varToMap",
-			"pairs",
+			"concat",
+			"autoShow",
+			"MID",
+			"showHex'",
+			"hiding (showHex')",
+			"showHex",
+			"import Numeric (showHex)",
+			"autoShow",
+			"print",
+			"times",
+			"uncurry",
+			"Double",
+			"frequency",
 			"tlm",
 			"file",
-			"meta",
-			"Parameter",
-			"Telemetry",
-			"ccsds",
-			"tlm",
-			"Telemetry",
-			"tlm",
-			"envs",
-			"tlm",
-			"Telemetry",
-			"liftIO",
-			"tlm",
-			"Parameter",
-			", ",
-			"Command",
-			"cmgs",
+			"cmd",
+			"file",
+			"ac_set_mode",
+			"file",
+			"  ",
+			"file",
+			"cc",
+			"DeriveGeneric",
+			"OverloadedStrings",
+			"range",
+			"undefined",
+			"cycle",
+			"range",
+			"nums",
+			"range",
+			"cycle",
+			"range",
 			"float",
 			"t_gps1980",
-			"time",
-			"print",
-			"envs",
-			"print",
-			"liftIO",
-			"IO",
-			"MonadIO",
-			"environment",
-			"undefined",
-			"Parameter",
-			"cc",
-			"mid",
-			"cc",
-			"Message",
-			"myForkIOs",
-			"run",
-			"Parameter",
-			"Variable",
-			"mappings",
-			"name",
-			"runRepeat",
-			"send",
-			">>=",
-			"Generic",
-			"eitherDecode",
-			"Command",
-			"messages",
-			"MessageFile",
-			"case",
+			"tlm",
+			"ac_set_mode",
+			"parseJSON",
+			"fromParse",
+			"T.",
+			"Data.Text",
+			"tlm",
+			"ac_set_mode",
+			"I64",
+			"Number",
+			"int64",
+			"cmd",
 			"start",
-			"<-",
+			"f",
+			"start",
 			"end",
 			"start",
-			"Telemetry",
-			"varDef",
-			" <-",
-			"mVars",
-			"mVarDef",
-			"Var",
-			"label",
-			"string",
+			"fromParse",
+			"Number",
+			"num",
+			"Number",
+			"Value",
+			"Number",
+			"vals",
+			"read",
+			"fromString",
+			"len",
+			"Error",
+			"error",
+			"->",
 			"typ",
+			", v",
+			"->",
+			"read",
+			"I64",
+			"int64",
+			"myForkIOs",
+			"s",
+			"length",
+			"float",
+			"double",
+			"float",
+			"typ",
+			"-",
 			"type",
-			"Parameter",
-			"data",
-			"Parameter",
-			"eter\n   ,end :: Paramet",
-			"Parameter",
-			"varDef",
-			"vars",
-			"Var",
-			"Variable",
-			"a",
-			"VariableDef",
-			"MessageDef"
+			"typ",
+			"--vals <- rangeList o",
+			"vals",
+			"F",
+			"rangeList",
+			"= do",
+			"id_ =",
+			"Variable id_ ",
+			"cm",
+			"mapM",
+			"BE",
+			"parameters",
+			"tlm",
+			"ac_set_mode",
+			"LE",
+			"swapBytes",
+			"uint8",
+			"float",
+			"W",
+			"uint",
+			"\" ",
+			"16",
+			"8",
+			"undefined",
+			"packetDataLength",
+			"<$> ",
+			"Message",
+			"showHex",
+			"packed",
+			"zip",
+			"String",
+			"showAuto",
+			"m",
+			"packed",
+			"$ ",
+			" vs",
+			"makeEnvs",
+			"packCCSDS",
+			"Message",
+			"params",
+			"Show",
+			"pd",
+			"CCSDS",
+			"x",
+			"packed",
+			"run",
+			"FlexibleContexts",
+			"Map",
+			"ByteString"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1165,6 +1199,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"showHex'",
+			"import Common",
 			"import",
 			"Byte",
 			"slidetitle",
@@ -1206,7 +1242,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -1215,15 +1251,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 696,
+						"buffer_size": 2076,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								510,
-								510
+								1185,
+								1185
 							]
 						],
 						"settings":
@@ -1240,63 +1276,65 @@
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close"
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
 							],
-							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage"
+							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 360.0,
+						"translation.x": 0.0,
+						"translation.y": 482.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "Command.hs",
+					"file": "Message.hs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 466,
+						"buffer_size": 1417,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								209,
-								209
+								1384,
+								1384
 							]
 						],
 						"settings":
@@ -1313,63 +1351,65 @@
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close"
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
 							],
-							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage"
+							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1058.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "Auto.hs",
+					"file": "Command.hs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 677,
+						"buffer_size": 373,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								500,
-								500
+								350,
+								350
 							]
 						],
 						"settings":
@@ -1386,43 +1426,43 @@
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close"
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
 							],
 							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 216.0,
+						"translation.y": 165.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -1430,19 +1470,19 @@
 				},
 				{
 					"buffer": 3,
-					"file": "Send.hs",
+					"file": "Parameter.hs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2279,
+						"buffer_size": 830,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								701,
-								701
+								791,
+								791
 							]
 						],
 						"settings":
@@ -1459,143 +1499,63 @@
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close"
-							],
-							"rulers":
-							[
-								120
-							],
-							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"wrap_width": 120
-						},
-						"translation.x": 0.0,
-						"translation.y": 656.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "Types.hs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 812,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								744,
-								744
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"WordCountShouldRun": true,
-							"bh_regions":
-							[
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close"
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
 							],
-							"syntax": "Packages/Haskell/Haskell.tmLanguage"
+							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 482.0,
+						"translation.y": 530.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "Parameter.hs",
+					"buffer": 4,
+					"file": "Data.hs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3345,
+						"buffer_size": 2691,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3330,
-								3330
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1612,48 +1572,419 @@
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
+							],
+							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Types.hs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1513,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								415,
+								415
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"WordCountShouldRun": true,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
-								"bh_double_quote_close"
+								"bh_double_quote_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
 							],
 							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2027.0,
+						"translation.y": 480.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Telemetry.hs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 335,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								295,
+								295
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"WordCountShouldRun": true,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
+							],
+							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 141.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Auto.hs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 512,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								512,
+								512
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"WordCountShouldRun": true,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
+							],
+							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "main.ctrl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								185,
+								185
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"WordCountShouldRun": true,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Variable.hs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1353,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								478,
+								478
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"WordCountShouldRun": true,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close"
+							],
+							"syntax": "Packages/SublimeHaskell/Syntaxes/Haskell-SublimeHaskell.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 446.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1692,7 +2023,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 294.0
+		"height": 291.0
 	},
 	"output.find_results":
 	{
@@ -1730,8 +2061,76 @@
 		"selected_items":
 		[
 			[
+				"types",
+				"Types.hs"
+			],
+			[
+				"data",
+				"Data.hs"
+			],
+			[
+				"tele",
+				"Telemetry.hs"
+			],
+			[
+				"para",
+				"Parameter.hs"
+			],
+			[
+				"command",
+				"Command.hs"
+			],
+			[
+				"mess",
+				"Message.hs"
+			],
+			[
+				"comm",
+				"Command.hs"
+			],
+			[
 				"common",
 				"Common.hs"
+			],
+			[
+				"auto",
+				"Auto.hs"
+			],
+			[
+				"cmd",
+				"ac_noop.cmd"
+			],
+			[
+				"main",
+				"main.ctrl"
+			],
+			[
+				"var",
+				"Variable.hs"
+			],
+			[
+				"tlm",
+				"ekf.tlm"
+			],
+			[
+				"main.ctrl",
+				"main.ctrl"
+			],
+			[
+				"main.",
+				"main.ctrl"
+			],
+			[
+				"ac",
+				"ac_set_mode.tlm"
+			],
+			[
+				"type",
+				"Types.hs"
+			],
+			[
+				"comma",
+				"Command.hs"
 			],
 			[
 				"send",
@@ -1742,84 +2141,128 @@
 				"CCSDS.hs"
 			],
 			[
-				"para",
-				"Parameter.hs"
+				"ops",
+				"ops_test.cmd"
 			],
 			[
-				"com",
-				"Command.hs"
-			],
-			[
-				"auot",
-				"Auto.hs"
-			],
-			[
-				"auto",
-				"Auto.hs"
-			],
-			[
-				"tele",
-				"Telemetry.hs"
-			],
-			[
-				"command",
-				"Command.hs"
-			],
-			[
-				"parse",
-				"Parse.hs"
-			],
-			[
-				"var",
+				"vari",
 				"Variable.hs"
 			],
 			[
-				"mess",
-				"Message.hs"
+				"set",
+				"ac_set_mode.tlm"
 			],
 			[
-				"ccss",
-				"CCSDS.hs"
+				"",
+				"ops_test.cmd"
 			],
 			[
-				"main",
+				"ac_set",
+				"ac_set_mode.tlm"
+			],
+			[
+				"main.c",
+				"main.ctrl"
+			],
+			[
+				"va",
+				"Variable.hs"
+			],
+			[
+				"typ",
+				"Types.hs"
+			],
+			[
+				"parse",
+				"Parameter.hs"
+			],
+			[
+				"mian",
 				"Main.hs"
 			],
 			[
-				"comm",
-				"Command.hs"
+				"main.ctr",
+				"main.ctrl"
 			],
 			[
-				"comma",
-				"Command.hs"
+				"messag",
+				"Message.hs"
+			],
+			[
+				"message",
+				"Message.hs"
+			],
+			[
+				"acset",
+				"ac_set_mode.tlm"
+			],
+			[
+				"acse",
+				"ac_set_mode.tlm"
+			],
+			[
+				"param",
+				"Parameter.hs"
+			],
+			[
+				"ty",
+				"Types.hs"
+			],
+			[
+				"telee",
+				"Telemetry.hs"
 			],
 			[
 				"tel",
 				"Telemetry.hs"
 			],
 			[
-				"pars",
-				"Parse.hs"
+				"ccss",
+				"CCSDS.hs"
+			],
+			[
+				"ccsd",
+				"CCSDS.hs"
+			],
+			[
+				"contr",
+				"Controller.hs"
+			],
+			[
+				"sen",
+				"Send.hs"
+			],
+			[
+				"contro",
+				"Controller.hs"
+			],
+			[
+				"mses",
+				"Message.hs"
 			],
 			[
 				"cont",
 				"Controller.hs"
 			],
 			[
-				"",
-				"ac_set_mode.tlm"
+				"control",
+				"Controller.hs"
 			],
 			[
-				"ac",
-				"ac_set_mode.tlm"
+				"com",
+				"Common.hs"
 			],
 			[
-				"main.ctrl",
-				"main.ctrl"
+				"mes",
+				"Message.hs"
 			],
 			[
-				"mian",
-				"Main.hs"
+				"auot",
+				"Auto.hs"
+			],
+			[
+				"pars",
+				"Parse.hs"
 			],
 			[
 				"aut",
@@ -1850,24 +2293,8 @@
 				"ac_noop.cmd"
 			],
 			[
-				"main.c",
-				"main.ctrl"
-			],
-			[
-				"ac_set",
-				"ac_set_mode.tlm"
-			],
-			[
 				"vara",
 				"Variable.hs"
-			],
-			[
-				"vari",
-				"Variable.hs"
-			],
-			[
-				"message",
-				"Message.hs"
 			],
 			[
 				"sn",
@@ -1882,16 +2309,8 @@
 				"Telemetry.hs"
 			],
 			[
-				"mes",
-				"Message.hs"
-			],
-			[
 				"commn",
 				"Common.hs"
-			],
-			[
-				"messag",
-				"Message.hs"
 			],
 			[
 				"pasre",
@@ -1902,28 +2321,12 @@
 				"Message.hs"
 			],
 			[
-				"param",
-				"Parameter.hs"
-			],
-			[
 				"par",
 				"Parameter.hs"
 			],
 			[
-				"tlm",
-				"ac_set_mode.tlm"
-			],
-			[
 				"ctrl",
 				"main.ctrl"
-			],
-			[
-				"acset",
-				"ac_set_mode.tlm"
-			],
-			[
-				"ops",
-				"ops_test.cmd"
 			],
 			[
 				"ekf",
@@ -1970,16 +2373,8 @@
 				"fog.msg"
 			],
 			[
-				"main.ctr",
-				"main.ctrl"
-			],
-			[
 				"fo",
 				"~/sem8/QuantumInfo/hw5/fog.msg"
-			],
-			[
-				"contr",
-				"Controller.hs"
 			],
 			[
 				"pr",
@@ -1988,10 +2383,6 @@
 			[
 				"conm",
 				"Common.hs"
-			],
-			[
-				"contro",
-				"Controller.hs"
 			],
 			[
 				"c",
@@ -2028,14 +2419,6 @@
 			[
 				"pa",
 				"Parameter.hs"
-			],
-			[
-				"main.",
-				"main.ctrl"
-			],
-			[
-				"control",
-				"Controller.hs"
 			],
 			[
 				"cmmon",
@@ -2188,58 +2571,6 @@
 			[
 				"bire",
 				"birefringence.tex"
-			],
-			[
-				"apar",
-				"electro_apparatus.tex"
-			],
-			[
-				"pres.tex",
-				"pres.tex"
-			],
-			[
-				"ac_app.h",
-				"apps/ac/fsw/src/ac_app.h"
-			],
-			[
-				"electr_resu",
-				"electro_results.tex"
-			],
-			[
-				"resutl",
-				"electro_results.tex"
-			],
-			[
-				"appara",
-				"electro_apparatus.tex"
-			],
-			[
-				"sideba",
-				"beamerouterthemesidebar.sty"
-			],
-			[
-				"kal",
-				"beamerthemeKalgan.sty"
-			],
-			[
-				"sty",
-				"beamerthemeKalgan.sty"
-			],
-			[
-				"elce",
-				"electro.tex"
-			],
-			[
-				"electro",
-				"electro.tex"
-			],
-			[
-				"chir",
-				"chiral.tex"
-			],
-			[
-				"pre",
-				"pres.tex"
 			]
 		],
 		"width": 0.0

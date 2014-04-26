@@ -44,8 +44,8 @@ instance FromJSON Data where
             "array"  -> do
                 elemTyp <- (o .: "element_type") :: Parser String
                 vals <- (o .: "values") :: Parser Array
-                elems <- mapM (parseJSON . makeElem elemTyp) (toList vals)
-                return $ Arr elems
+                let dats = map (fromParse elemTyp) $ toList vals
+                return $ Arr dats
             "string" -> do
                 (Number len) <- o .: "length" :: Parser Value
                 val <- o .: "value" :: Parser Value
@@ -69,6 +69,5 @@ fromParse "int8"   (Number i) = I8  (read . show . round $ i)
 fromParse "int16"  (Number i) = I16 (read . show . round $ i)
 fromParse "int32"  (Number i) = I32 (read . show . round $ i)
 fromParse "int64"  (Number i) = I64 (read . show . round $ i)
---fromParse "array"  (Array  a) = Arr (read . show . round $ i)
 fromParse x (String s) = let [_, len] = splitOn ":" x in S (T.unpack s, round . read $ len)
 fromParse x _ = error $ "Invalid data type: " ++ x
