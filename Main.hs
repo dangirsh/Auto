@@ -58,5 +58,5 @@ pack (MessageDef {variables=vs, message=m}) = zip (f packCCSDS) (f autoShow)
         varToPairs (Variable id_ ds) = [(id_, Parameter id_ d) | d <- ds]
         envs =
             case map (Config . M.fromList) . transpose . map varToPairs $ vs of
-                [] -> [Config M.empty] -- hack around case for no variables
+                [] -> repeat $ Config M.empty -- hack around case for no variables
                 xs -> xs
