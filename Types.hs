@@ -65,6 +65,7 @@ data MessageDef a = MessageDef {
 data MessageMeta = MessageMeta {
      file :: FilePath
     ,frequency :: Double
+    ,times :: Int
 } deriving (Generic)
 
 

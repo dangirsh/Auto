@@ -2,6 +2,7 @@ module Common where
 
 import Data.BitVector hiding (showHex)
 import Types
+import Numeric (showHex)
 
 
 safeBitVec :: (Integral a, Show a) => Int -> a -> BV
@@ -28,3 +29,9 @@ swapBytes :: [Byte] -> [Byte]
 swapBytes [] = []
 swapBytes (b1:b2:bs) = b2:b1:swapBytes bs
 swapBytes _ = error "Must be an even number of bytes to swap."
+
+
+showHex' :: (Integral a, Show a) => a -> String
+showHex' x = if length s == 1 then '0':s else s
+    where
+        s = showHex x ""

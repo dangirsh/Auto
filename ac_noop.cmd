@@ -1,5 +1,8 @@
 {
-    "mid": "0xCA",
-    "cc" : 0,
-    "arguments": []
+    "variables": [],
+    "message": {
+        "mid": "0xCA",
+        "cc" : 0,
+        "arguments": []
+    }
 }

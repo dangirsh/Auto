@@ -7,7 +7,7 @@ module Parameter (
 
 import Control.Applicative ((<$>), (<*>))
 import Data.Aeson
-import Numeric (showHex)
+import Common
 import qualified Data.Text as T
 import Types
 import Data
@@ -32,4 +32,4 @@ instance AutoShow Parameter where
 
     autoShow p@(Parameter s _) = do
         packed <- packParam p
-        return $ s ++ ":" ++ concatMap (`showHex` "|") packed
+        return $ s ++ ": " ++ concatMap ((++ "|") . showHex') packed

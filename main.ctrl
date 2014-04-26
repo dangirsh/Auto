@@ -3,15 +3,53 @@
         "ip": "127.0.0.1",
         "port": 1234
     },
-    "sequenced": [],
-    "parallel": [
+    "sequenced": [
         {
-            "file": "ac_set_mode.tlm",
-            "frequency": 1
+            "file": "ac_noop.cmd",
+            "frequency": 1,
+            "times": 3
         },
         {
             "file": "ops_test.cmd",
-            "frequency": 1
+            "frequency": 1,
+            "times": 3
+        }
+    ],
+    "parallel": [
+        {
+            "file": "ac_set_mode.tlm",
+            "frequency": 1,
+            "times": 3
+        },
+        {
+            "file": "cdh.tlm",
+            "frequency": 1,
+            "times": 3
+        },
+        {
+            "file": "cmg.tlm",
+            "frequency": 1,
+            "times": 3
+        },
+        {
+            "file": "ekf.tlm",
+            "frequency": 1,
+            "times": 3
+        },
+        {
+            "file": "fog.tlm",
+            "frequency": 1,
+            "times": 3
+        },
+        {
+            "file": "st.tlm",
+            "frequency": 1,
+            "times": 3
+        },
+        {
+            "file": "sun_sens.tlm",
+            "frequency": 1,
+            "times": 3
         }
     ]
 }

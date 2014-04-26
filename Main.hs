@@ -29,19 +29,17 @@ main = getArgs >>= mapM_ (parseFile >=> runner)
 runner :: Controller -> IO ()
 runner (Controller {meta, sequenced, parallel}) = do
     s <- async $ mapM_ (run meta) sequenced
-    mapConcurrently (run meta) parallel
+    _ <- mapConcurrently (run meta) parallel
     wait s
-
-    --sequence_ $ mapM_ (run meta) sequenced : map (run meta) parallel
-    --myForkIOs $ mapM_ (run meta) sequenced : map (run meta) parallel
 
 
 run :: ControllerMeta -> MessageMeta -> IO ()
-run (ControllerMeta {ip, port}) (MessageMeta {file, frequency}) = do
-    packed <- uncurry zip <$> getPacked
-    forM_ packed (\(bs, s) -> do
+run (ControllerMeta {ip, port}) (MessageMeta {file, frequency, times}) = do
+    packed <- getPacked
+    putStrLn $ "Starting to send " ++ file ++ " at " ++ (show frequency) ++ "Hz " ++ (show times) ++ " times.\n"
+    forM_ (take times packed) (\(bs, s) -> do
         sendUDP ip port bs
-        print s
+        putStrLn $ file ++ ": " ++ s ++ "\n"
         hFlush stdout
         threadDelay . round $ 1000000 / frequency
         )
@@ -53,8 +51,8 @@ run (ControllerMeta {ip, port}) (MessageMeta {file, frequency}) = do
                 ext      -> error $ "Unknown file extension: " ++ ext
 
 
-pack :: (FromJSON a, CCSDS (Message a), AutoShow a) => MessageDef a -> ([B.ByteString], [String])
-pack (MessageDef {variables=vs, message=m}) = (f packCCSDS, f autoShow)
+pack :: (FromJSON a, CCSDS (Message a), AutoShow a) => MessageDef a -> [(B.ByteString, String)]
+pack (MessageDef {variables=vs, message=m}) = zip (f packCCSDS) (f autoShow)
     where
         f g = map (runAuto (g m)) envs
         varToPairs (Variable id_ ds) = [(id_, Parameter id_ d) | d <- ds]

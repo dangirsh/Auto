@@ -1,0 +1,14 @@
+{
+    "variables": [],
+    "message": {
+        "mid": "0xB4",
+        "parameters": [
+            {
+                "type": "array",
+                "element_type": "float",
+                "values": [0,0,0,1],
+                "label": "q_star"
+            }
+        ]
+    }
+}

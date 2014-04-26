@@ -1,34 +1,43 @@
 {
-    "mid": "0xC3",
-    "parameters": [
-        {
-            "type": "uint8",
-            "value": 0,
-            "label": "enabled_CMGs"
-        },
-        {
-            "type": "array",
-            "element_type": "float",
-            "values": [0,0,0,0,0,0,0,0],
-            "label": "GimbalRate"
-        },
-        {
-            "type": "array",
-            "element_type": "float",
-            "values": [0,0,0,0,0,0,0,0],
-            "label": "GimbalAngle"
-        },
-        {
-            "type": "array",
-            "element_type": "float",
-            "values": [0,0,0,0,0,0,0,0],
-            "label": "RotorSpeed"
-        },
-        {
-            "type": "array",
-            "element_type": "float",
-            "values": [0,0,0,0,0,0,0,0],
-            "label": "RotorTorque"
-        }
-    ]
+    "variables": [],
+    "message": {
+        "mid": "0xC3",
+        "parameters": [
+            {
+                "type": "uint8",
+                "value": 0,
+                "label": "enabled_CMGs"
+            },
+            {
+                "type": "array",
+                "element_type": "float",
+                "values": [0,0,0,0,0,0,0,0],
+                "label": "GimbalRate"
+            },
+            {
+                "type": "array",
+                "element_type": "float",
+                "values": [0,0,0,0,0,0,0,0],
+                "label": "GimbalAngle"
+            },
+            {
+                "type": "array",
+                "element_type": "float",
+                "values": [0,0,0,0,0,0,0,0],
+                "label": "RotorSpeed"
+            },
+            {
+                "type": "array",
+                "element_type": "float",
+                "values": [0,0,0,0,0,0,0,0],
+                "label": "RotorTorque"
+            },
+            {
+                "type": "array",
+                "element_type": "uint8",
+                "values": [0,0,0],
+                "label": "padding"
+            }
+        ]
+    }
 }

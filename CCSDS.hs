@@ -8,7 +8,6 @@ import Control.Exception.Base (assert)
 import Control.Applicative ((<$>))
 import qualified Data.ByteString.Lazy as B
 import Common
-import Parameter
 import Auto
 import Types
 

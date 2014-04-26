@@ -6,17 +6,17 @@ import qualified Data.ByteString.Lazy as B
 import Data.ByteString.Lazy.Builder
 import Data.Vector (toList)
 import Foreign.Marshal.Utils (fromBool)
-import Control.Applicative ((<$>), (<*>))
+import Control.Applicative ((<$>))
 import Data.Aeson
 import Data.Aeson.Types
 import Data.List.Split
 import Types
-import Debug.Trace (trace)
+--import Debug.Trace (trace)
 import qualified Data.Text as T
 
 
 packData :: Data -> [Byte]
-packData (S (s, n)) = (b2w (string7 s)) ++ replicate (n - length s) 0
+packData (S (s, n)) = b2w (string7 s) ++ replicate (n - length s) 0
 packData (B b)   =  b2w . word8 . fromBool $ b
 packData (I8 i)  =  b2w . int8 $ i
 packData (W8 w)  =  b2w . word8 $ w
@@ -49,7 +49,7 @@ instance FromJSON Data where
             "string" -> do
                 (Number len) <- o .: "length" :: Parser Value
                 val <- o .: "value" :: Parser Value
-                return $ fromParse (typ ++ ":" ++ (show len)) val
+                return $ fromParse (typ ++ ":" ++ show len) val
             _ -> fromParse typ <$> o .: "value"
         where
             makeElem t v = object ["type" .= t, "value" .= v]
