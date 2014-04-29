@@ -5,8 +5,15 @@
             "type": "cycle",
             "element_type": "uint8",
             "start": 0,
-            "end": 20,
-            "spacing": 3
+            "end": 15,
+            "spacing": 1
+        },
+        {
+            "id": "b",
+            "type": "random",
+            "element_type": "uint8",
+            "low": 0,
+            "high": 255
         }
     ],
     "message": {
@@ -14,11 +21,7 @@
         "cc" : 11,
         "arguments": [
             "a",
-            {
-                "type": "uint8",
-                "label": "b",
-                "value": 2
-            },
+            "b",
             {
                 "type": "uint8",
                 "label": "c",

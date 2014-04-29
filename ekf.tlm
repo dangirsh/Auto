@@ -1,5 +1,13 @@
 {
-    "variables": [],
+    "variables": [
+        {
+            "id": "cmg1_gim_w_b",
+            "type": "random",
+            "element_type": "float",
+            "low": 0,
+            "high": 10
+        }
+    ],
     "message": {
         "mid": "0xD1",
         "parameters": [
@@ -15,10 +23,11 @@
                 "values": [0, 0, 0, 1],
                 "label": "q_eci2body_est"
             },
+            "cmg1_gim_w_b",
             {
                 "type": "array",
                 "element_type": "float",
-                "values": [0,0,0,0,0,0,0,0],
+                "values": [0,0,0,0,0,0,0],
                 "label": "gim_w_b"
             },
             {

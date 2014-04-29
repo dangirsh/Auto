@@ -8,7 +8,13 @@
         {
             "file": "ekf.tlm",
             "frequency": 1,
-            "times": 2
+            "times": 20000
+        },
+        {
+            "file": "ops_test.cmd",
+            "frequency": 1,
+            "times": 20000
         }
+
     ]
 }

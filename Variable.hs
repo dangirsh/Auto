@@ -8,8 +8,9 @@ module Variable (
 import Control.Applicative ((<$>))
 import Data.Aeson
 import Data.Aeson.Types
-import Data.Attoparsec.Number (Number)
 import Data.Vector (toList)
+import Data.Scientific (fromFloatDigits, Scientific)
+import System.Random
 import Data (fromParse)
 import Types
 
@@ -27,6 +28,9 @@ instance FromJSON Variable where
                 vals <- toList <$> (o .: "values" :: Parser Array)
                 let dats = map (fromParse element_type) vals
                 return $ Variable id_ (cycle dats)
+            "random" -> do
+                dats <- map (fromParse element_type) <$> (randList o :: Parser [Value])
+                return $ Variable id_ dats
             _       -> undefined
         where
             rangeList obj = do
@@ -34,8 +38,22 @@ instance FromJSON Variable where
                 end <- obj .: "end"
                 spacing <- obj .: "spacing"
                 case (start, end, spacing) of
-                    (Number s, Number e, Number sp) -> return $ map Number $ takeWhile (<= e) $ f s sp
+                    (Number s, Number e, Number sp) ->
+                         return . map (Number) . takeWhile (<= e) . mkRange s $ sp
                     _          -> error "Invalid range type."
-            f a b = a : f (a + b) b
+            randList obj = do
+                low <- obj .: "low"
+                high <- obj .: "high"
+                case (low, high) of
+                    (Number l, Number h) -> do
+                        let rs = mkRand (sciToFloat l) (sciToFloat h) (mkStdGen 42)
+                        return $ map (Number . fromFloatDigits) rs
+                    _          -> error "Invalid rand type."
+            mkRange a b = a : mkRange (a + b) b
+            mkRand low high gen = next : mkRand low high newGen
+                where
+                    (next, newGen) = randomR (low, high) gen
+            sciToFloat :: Scientific -> Float
+            sciToFloat = fromRational . toRational
 
     parseJSON _ = error "Invalid variables definition."
