@@ -6,11 +6,6 @@ Command and Telemetry Sequencer for NASA's Core Flight Executive
 http://code.nasa.gov/project/core-flight-executive-cfe/
 
 
-Code temporarily [here](https://cusat.cornell.edu/viewvc/ITAR/Violet/FlightSoftware/branches/ACS/cfe/tools/Auto).
-
-[JSON Editor](http://www.alkemis.com/jsonEditor.htm)
-
-
 ## Usage
 
 A test is defined by a set of message files (`*.tlm` and `*.cmd`) and a single control file (`*.ctrl`), both using the [JSON](http://www.json.org/) format. Together these define the information in the command and telemetry packets, when to send them, where to send them, and how they should change over time.
