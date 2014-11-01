@@ -79,6 +79,7 @@ where:
     `<object>|<string>` -- use the object for unchanging values, and the string for variables (use the variable's id). For the object case, the keys are:
 
     `label: <string>` -- name for the data, only used when printing packet (not sent in packet)
+    
     `type: <string>` -- one of "bool" | "float" | "double" | "uint8" | "uint16" | "uint32" | "uint64" | "int8" | "int16" | "int32"| "int64" | "string" | "array". The remaining keys in the data definition object are dependent on this value.
     - `if type="string":`
         - `length: <int>` -- the size of the string buffer
